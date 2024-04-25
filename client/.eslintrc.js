@@ -8,12 +8,12 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended'
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.js'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module', ecmaFeatures: {
       jsx: true,
     }, },
   settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
+  plugins: ['react', 'react-hooks', 'jsx-a11y', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
     'react/jsx-no-target-blank': 'off',

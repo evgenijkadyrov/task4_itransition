@@ -1,5 +1,7 @@
 import React from 'react';
 import {Header} from "antd/es/layout/layout.js";
+import {Paths} from "../../Paths.js";
+import {Link} from "react-router-dom";
 const headerStyle = {
     display: "flex",
     alignItems:"center",
@@ -23,8 +25,8 @@ export const HeaderStyled = () => {
             <div>Users</div>
             <div style={navStyle}>
                 <div>Hello, user</div>
-                <div>Login</div>
-                <div>Registration</div>
+                <Link to={Paths.login}>Login</Link>
+                <Link to={Paths.register}>Registration</Link>
             </div>
 
         </Header>
