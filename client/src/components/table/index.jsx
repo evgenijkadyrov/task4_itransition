@@ -1,78 +1,68 @@
 import React, {useState} from "react";
-import {Button, Checkbox, Table} from "antd";
-import {useFetchUsers} from "../../hooks/fetchUsers.js";
+import {Button, Table} from "antd";
+import {useFetchUsers} from "../../hooks/useFetchUsers.js";
+import {blockUsers, deleteUsers, unBlockUsers} from "../../services/users.js";
 
+const columns = [
+    {
+        title: "Name",
+        dataIndex: "name",
 
+    },
+    {
+        title: "Email",
+        dataIndex: "email",
+
+    },
+    {
+        title: "Last login",
+        dataIndex: "lastLogin",
+
+    },
+    {
+        title: "Status",
+        dataIndex: "status",
+
+    },
+];
 export const TableUsers = () => {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [isLoading, setLoading] = useState(false);
-    const {users} = useFetchUsers()
-
-
-    const toggleSelectAll = () => {
-        setSelectedRowKeys((keys) =>
-            keys.length === data.length ? [] : data.map((r) => r.key),
-        );
+    const {users, fetchUsers} = useFetchUsers()
+    const data = users.map(user => ({...user, key: user.email}))
+    const handleBlock = async () => {
+        try {
+            await blockUsers(selectedRowKeys);
+            setSelectedRowKeys([])
+            await fetchUsers()
+        } catch (error) {
+            console.log(error)
+        }
     };
 
-    const handleBlock = () => {
-        console.log("user block", selectedRowKeys);
+    const handleUnBlock = async () => {
+        try {
+            await unBlockUsers(selectedRowKeys);
+            setSelectedRowKeys([])
+            await fetchUsers()
+        } catch (error) {
+            console.log(error)
+        }
     };
-    const handleUnBlock = () => {
-        console.log("user unBlock");
-    };
-    const handleDelete = () => {
-        console.log("user delete");
+    const handleDelete = async () => {
+        try {
+            await deleteUsers(selectedRowKeys);
+            setSelectedRowKeys([]);
+            await fetchUsers();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const onSelectChange = (newSelectedRowKeys) => {
-        console.log("selectedRowKeys changed: ", newSelectedRowKeys);
+        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
         setSelectedRowKeys(newSelectedRowKeys);
     };
-
-    const columns = [
-        {
-            title: "Name",
-            dataIndex: "name",
-            key: "name",
-        },
-        {
-            title: () => (
-                <>
-                    <Checkbox
-                        checked={selectedRowKeys.length}
-                        indeterminate={
-                            selectedRowKeys.length > 0 && selectedRowKeys.length < data.length
-                        }
-                        onChange={toggleSelectAll}
-                    />
-                    <span> Email </span>
-                </>
-            ),
-            dataIndex: "email",
-            key: "email",
-        },
-        {
-            title: () => (
-                <>
-                    {" "}
-                    <Checkbox
-                        checked={selectedRowKeys.length}
-                        onChange={toggleSelectAll}
-                    />
-                    <span>Last login </span>
-                </>
-            ),
-            dataIndex: "lastLogin",
-            key: "lastLogin",
-        },
-        {
-            title: "Status",
-            dataIndex: "status",
-            key: "status",
-        },
-    ];
-
     const rowSelection = {
         selectedRowKeys,
         onChange: onSelectChange,
@@ -117,7 +107,7 @@ export const TableUsers = () => {
           {hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}
         </span>
             </div>
-            <Table rowSelection={rowSelection} columns={columns} dataSource={users}/>
+            <Table rowSelection={rowSelection} columns={columns} dataSource={data}/>
         </div>
     );
 };
