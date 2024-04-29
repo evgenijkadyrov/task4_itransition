@@ -1,11 +1,11 @@
-import { LayoutStyled } from "../layout";
+import { LayoutStyled } from "../../components/layout/index.jsx";
 import { Card, Form, Row, Space, Typography } from "antd";
-import { InputCustom } from "../inputCustom/index.jsx";
-import { ButtonCustom } from "../buttonCustom/index.jsx";
-import { InputPassword } from "../password-input/index.jsx";
+import { InputCustom } from "../../components/inputCustom/index.jsx";
+import { ButtonCustom } from "../../components/buttonCustom/index.jsx";
+import { InputPassword } from "../../components/password-input/index.jsx";
 import { Link } from "react-router-dom";
 import { Paths } from "../../Paths.js";
-import { ErrorMessage } from "../errorMessage";
+import { ErrorMessage } from "../../components/errorMessage/index.jsx";
 import { useRegisterUser } from "../../hooks/useRegisterUser.js";
 
 export const Register = () => {

@@ -9,6 +9,7 @@ module.exports = function (req, res, next) {
             return res.status(403).json({message: "User not authorization"})
         }
         req.user = jwt.verify(token, process.env.SECRET)
+
         next()
     } catch (error) {
         console.log(error)

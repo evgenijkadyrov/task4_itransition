@@ -2,6 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: "https://task4-itransition-65ds.vercel.app",
+  //baseURL: "http://localhost:3000",
 });
 export const getUsers = async (token) => {
   const config = {
@@ -37,9 +38,11 @@ export const logoutUser = () => {
 };
 export const blockUsers = async (usersEmail) => {
   try {
-    await instance.post("auth/users/block", {
+    const res = await instance.post("auth/users/block", {
       usersEmail: usersEmail,
+      userEmail: localStorage.getItem("email"),
     });
+    return res.data;
   } catch (error) {
     throw new Error(`Error blocking users: ${error.response.data.message}`);
   }

@@ -11,6 +11,7 @@ export const useLoginUser = () => {
       const res = await login(data);
       localStorage.setItem("token", res.token);
       localStorage.setItem("name", res.user.name);
+      localStorage.setItem("email", res.user.email);
       navigate(Paths.home);
     } catch (error) {
       setError(error.message);

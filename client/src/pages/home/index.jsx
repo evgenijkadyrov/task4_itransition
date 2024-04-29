@@ -1,5 +1,5 @@
-import { LayoutStyled } from "../layout/index.jsx";
-import { TableUsers } from "../table/index.jsx";
+import { LayoutStyled } from "../../components/layout/index.jsx";
+import { TableUsers } from "../../components/table/index.jsx";
 import { useNavigate } from "react-router-dom";
 import { Paths } from "../../Paths.js";
 import { useEffect } from "react";

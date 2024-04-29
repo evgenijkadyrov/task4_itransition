@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const blockUsers = async (req, res) => {
-    const {usersEmail} = req.body;
+    const {usersEmail, userEmail} = req.body;
 
 
     try {
@@ -11,15 +11,19 @@ const blockUsers = async (req, res) => {
 
         const updatedUsers = await Promise.all(
             users.map(async (user) => {
+
                 user.status = 'block';
                 await user.save();
                 return user;
             })
         );
+        const blockItself = users.some((user) => user.email === userEmail);
+
 
         return res.status(200).json({
             message: 'Users blocked successfully',
-            users: updatedUsers
+            users: updatedUsers,
+            blockItself
         });
     } catch (error) {
         console.error('Error blocking users:', error);
