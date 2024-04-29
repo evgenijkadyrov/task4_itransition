@@ -37,7 +37,7 @@ export const logoutUser = () => {
 };
 export const blockUsers = async (usersEmail) => {
   try {
-    await instance.post("/users/block", {
+    await instance.post("auth/users/block", {
       usersEmail: usersEmail,
     });
   } catch (error) {

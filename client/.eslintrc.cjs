@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true, node:true },
+  env: { browser: true, es2020: true, node: true },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -21,6 +21,5 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     "react/jsx-no-target-blank": "off",
-
   },
 };
