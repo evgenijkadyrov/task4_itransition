@@ -1,6 +1,6 @@
 .layoutStyle {
-    border-radius: 8px;
-    overflow: hidden;
-    width: calc(100% - 8px);
-    max-width: calc(100% - 8px);
+  border-radius: 8px;
+  overflow: hidden;
+  width: calc(100% - 8px);
+  max-width: calc(100% - 8px);
 }
