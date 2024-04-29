@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://task4-itransition-65ds.vercel.app",
-  //baseURL: "http://localhost:3000",
+  baseURL: process.env.PRODUCTION_URL,
 });
 export const getUsers = async (token) => {
   const config = {

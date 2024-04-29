@@ -1,4 +1,3 @@
-import React from "react";
 import { Header } from "antd/es/layout/layout.js";
 import { Paths } from "../../Paths.js";
 import { Link } from "react-router-dom";

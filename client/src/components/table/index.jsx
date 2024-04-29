@@ -1,4 +1,3 @@
-import React from "react";
 import { Table } from "antd";
 import { TableControls } from "./tableControls/index.jsx";
 import { ErrorMessage } from "../errorMessage/index.jsx";
