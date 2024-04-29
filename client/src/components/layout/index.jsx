@@ -1,5 +1,5 @@
 import { Flex, Layout } from "antd";
-import { HeaderCustom } from "../header/index.jsx";
+import { HeaderCustom } from "../headerCustom/index.jsx";
 import styles from "./styles.module.css";
 
 export const LayoutStyled = ({ children }) => {

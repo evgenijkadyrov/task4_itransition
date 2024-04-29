@@ -1,4 +1,4 @@
-.header {
+.headerWrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,7 +10,7 @@
   background-color: #808080;
   margin-bottom: 24px;
 }
-.nav {
+.navigate {
   display: flex;
   gap: 20px;
 }

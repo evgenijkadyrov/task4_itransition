@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import { useLogout } from "../../hooks/useLogout.js";
 
-export const HeaderStyled = () => {
+export const HeaderCustom = () => {
   const { userName, isAuthenticated, handleLogOut } = useLogout();
 
   return (
-    <Header className={styles.header}>
+    <Header className={styles.headerWrapper}>
       <div>Users</div>
-      <div className={styles.nav}>
+      <div className={styles.navigate}>
         {userName && <div>Hello, {userName}</div>}
         {isAuthenticated ? (
           <a onClick={handleLogOut} style={{ color: "white" }}>
