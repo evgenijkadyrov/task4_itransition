@@ -2,11 +2,12 @@
   "name": "task4",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "api/index.js",
   "scripts": {
-    "server": "node server.js",
+    "server": "nodemon api/index.js",
     "client": "npm run dev --prefix ../client",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "start": "node api/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Evg",
   "license": "ISC",
