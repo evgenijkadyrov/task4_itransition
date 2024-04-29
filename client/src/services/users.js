@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8001/auth",
+  baseURL: "task4-itransition-mauve.vercel.app",
 });
 export const getUsers = async (token) => {
   const config = {
@@ -9,19 +9,19 @@ export const getUsers = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   };
-  const users = await instance.get("/users", config);
+  const users = await instance.get("/auth/users", config);
   return users.data;
 };
 export const registerUser = async (userData) => {
   try {
-    await instance.post("/register", userData);
+    await instance.post("/auth/register", userData);
   } catch (error) {
     throw new Error(`Error register user: ${error.response.data.message}`);
   }
 };
 export const login = async (userData) => {
   try {
-    const res = await instance.post("/login", userData);
+    const res = await instance.post("/auth/login", userData);
     return res.data;
   } catch (error) {
     throw new Error(`Error login user: ${error.response.data.message}`);
@@ -46,7 +46,7 @@ export const blockUsers = async (usersEmail) => {
 };
 export const unBlockUsers = async (usersEmail) => {
   try {
-    await instance.post("/users/unblock", {
+    await instance.post("/auth/users/unblock", {
       usersEmail: usersEmail,
     });
   } catch (error) {
@@ -55,7 +55,7 @@ export const unBlockUsers = async (usersEmail) => {
 };
 export const deleteUsers = async (usersEmail) => {
   try {
-    await instance.delete("/users/delete", {
+    await instance.delete("/auth/users/delete", {
       data: { usersEmail },
     });
   } catch (error) {
