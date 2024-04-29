@@ -10,7 +10,7 @@ const cors = require('cors');
 app.use(cors({
     origin:["https://task4-itransition-mauve.vercel.app/"],
     methods:["GET", "POST", "DELETE", "PUT"],
-    credentials: true
+
 }))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
