@@ -1,16 +1,17 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: { browser: true, es2020: true, node:true },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
+    'prettier'
   ],
-  ignorePatterns: ["dist", ".eslintrc.js"],
+  ignorePatterns: ["dist", ".eslintrc.cjs", ".css"],
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: "2021",
     sourceType: "module",
     ecmaFeatures: {
       jsx: true,
@@ -21,9 +22,6 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     "react/jsx-no-target-blank": "off",
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
-    ],
+
   },
 };
