@@ -28,6 +28,7 @@ export const login = async (userData) => {
 export const logout = () => {
     try {
         localStorage.removeItem('token');
+        localStorage.removeItem('name');
 
     } catch (error) {
         throw new Error(`Error logout user: ${error.message}`)

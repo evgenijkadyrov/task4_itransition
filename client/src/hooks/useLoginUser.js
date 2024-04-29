@@ -10,6 +10,8 @@ export const useLoginUser = () => {
         try {
             const res = await login(data)
             localStorage.setItem('token', res.token);
+            localStorage.setItem('name', res.user.name);
+
             navigate(Paths.home)
         } catch (e) {
             console.log(e)
