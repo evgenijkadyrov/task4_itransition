@@ -1,48 +1,30 @@
-import React, {useState} from "react";
+import React from "react";
 import {Header} from "antd/es/layout/layout.js";
 import {Paths} from "../../Paths.js";
-import {Link, useNavigate} from "react-router-dom";
-import {logout} from "../../services/users.js";
-import {useLoginUser} from "../../hooks/useLoginUser.js";
-
-const headerStyle = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    color: "#fff",
-    height: 127,
-    fontSize: "24px",
-    paddingInline: 148,
-    lineHeight: "64px",
-    backgroundColor: "#808080",
-};
-const navStyle = {
-    display: "flex",
-    gap: "20px",
-};
+import {Link} from "react-router-dom";
+import styles from "./styles.module.css"
+import {useLogout} from "../../hooks/useLogout.js";
 
 export const HeaderStyled = () => {
-    const navigate = useNavigate()
-    const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("token"));
-    // const {user}=useLoginUser()
-    const handleLogOut = () => {
+    const {userName, isAuthenticated, handleLogOut} = useLogout()
 
-        try {
-            logout()
-            setIsAuthenticated(false)
-            navigate(Paths.login)
-        } catch (e) {
-            console.log(e)
-        }
-    }
     return (
-        <Header style={headerStyle}>
+        <Header className={styles.header}>
             <div>Users</div>
-            <div style={navStyle}>
-                <div>Hello, user</div>
-                {isAuthenticated ? <a onClick={handleLogOut} style={{color:'white'}}>Logout</a> :
-                    <Link to={Paths.login} style={{color:'white'}}>Login</Link>}
-                <Link to={Paths.register} style={{color:'white'}}>Registration</Link>
+            <div className={styles.nav}>
+                {userName && <div>Hello, {userName}</div>}
+                {isAuthenticated ? (
+                    <a onClick={handleLogOut} style={{color: "white"}}>
+                        Logout
+                    </a>
+                ) : (
+                    <Link to={Paths.login} style={{color: "white"}}>
+                        Login
+                    </Link>
+                )}
+                <Link to={Paths.register} style={{color: "white"}}>
+                    Registration
+                </Link>
             </div>
         </Header>
     );

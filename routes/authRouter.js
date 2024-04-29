@@ -3,9 +3,11 @@ const {
     getUsers,
     registerUser,
     login,
-    blockUsers,
-    unBlockUsers,deleteUsers
 } = require("../controllers/auth");
+const {
+    blockUsers,
+    unBlockUsers, deleteUsers
+} = require("../controllers/tableControls");
 const router = new Router()
 const {check} = require("express-validator")
 const authMiddleware = require('../authMiddleware/authMiddleWare')

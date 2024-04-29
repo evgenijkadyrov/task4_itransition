@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    height: 127px;
+    font-size: 24px;
+    padding-inline: 148px;
+    line-height: 64px;
+    background-color: #808080;
+    margin-bottom: 24px;
+}
+.nav {
+    display: flex;
+    gap: 20px;
+}

@@ -1,74 +1,64 @@
-import axios from 'axios'
+import axios from "axios";
 
+const instance = axios.create({
+    baseURL: "http://localhost:8001/auth",
+});
 export const getUsers = async (token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     };
-    const users = await axios.get('http://localhost:8001/auth/users', config)
-    return users.data
-}
-export const registrationUser = async (userData) => {
+    const users = await instance.get("/users", config);
+    return users.data;
+};
+export const registerUser = async (userData) => {
     try {
-        await axios.post('http://localhost:8001/auth/register', userData);
-
+        await instance.post("/register", userData);
     } catch (error) {
-        throw new Error(`Error registering user: ${error.message}`);
+        throw new Error(`Error register user: ${error.response.data.message}`);
     }
 };
 export const login = async (userData) => {
     try {
-        const res = await axios.post('http://localhost:8001/auth/login', userData);
-        return res.data
+        const res = await instance.post("/login", userData);
+        return res.data;
     } catch (error) {
-        throw new Error(`Error registering user: ${error.message}`);
+        throw new Error(`Error login user: ${error.response.data.message}`);
     }
 };
-export const logout = () => {
+export const logoutUser = () => {
     try {
-        localStorage.removeItem('token');
-        localStorage.removeItem('name');
-
+        localStorage.removeItem("token");
+        localStorage.removeItem("name");
     } catch (error) {
-        throw new Error(`Error logout user: ${error.message}`)
+        throw new Error(`Error logout user: ${error.message}`);
     }
 };
 export const blockUsers = async (usersEmail) => {
-
     try {
-        await axios.post('http://localhost:8001/auth/users/block', {
-            usersEmail: usersEmail
-        })
-
+        await instance.post("/users/block", {
+            usersEmail: usersEmail,
+        });
     } catch (error) {
-        console.log(error)
+        throw new Error(`Error blocking users: ${error.response.data.message}`);
     }
-
-
-}
+};
 export const unBlockUsers = async (usersEmail) => {
-
     try {
-        await axios.post('http://localhost:8001/auth/users/unblock', {
-            usersEmail: usersEmail
-        })
-
+        await instance.post("/users/unblock", {
+            usersEmail: usersEmail,
+        });
     } catch (error) {
-        console.log(error)
+        throw new Error(`Error unblocking users: ${error.response.data.message}`);
     }
-
-
-}
+};
 export const deleteUsers = async (usersEmail) => {
-
     try {
-        await axios.delete('http://localhost:8001/auth/users/delete', {
-            data: {usersEmail}
-        })
+        await instance.delete("/users/delete", {
+            data: {usersEmail},
+        });
     } catch (error) {
-        console.log(error)
+        throw new Error(`Error deleting users: ${error.response.data.message}`);
     }
-
-
-}
+};

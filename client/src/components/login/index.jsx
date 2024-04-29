@@ -1,16 +1,15 @@
 import {Card, Form, Row, Space, Typography} from "antd";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {Paths} from "../../Paths";
 import {InputCustom} from "../inputCustom/index.jsx";
 import {ButtonCustom} from "../buttonCustom/index.jsx";
 import {InputPassword} from "../password-input/index.jsx";
 import {LayoutStyled} from "../layout/index.jsx";
-import {login} from "../../services/users.js";
-import {useContext, useState} from "react";
 import {useLoginUser} from "../../hooks/useLoginUser.js";
+import {ErrorMessage} from "../errorMessage";
 
 export const Login = () => {
-   const {loginUser}=useLoginUser()
+    const {loginUser, error} = useLoginUser();
     return (
         <LayoutStyled>
             <Row align="middle" justify="center">
@@ -22,6 +21,7 @@ export const Login = () => {
                             Log in
                         </ButtonCustom>
                     </Form>
+                    <ErrorMessage message={error}/>
                     <Space direction={"vertical"} size={"large"}>
                         <Typography.Text>
                             No account? Please, <Link to={Paths.register}>Sing up</Link>

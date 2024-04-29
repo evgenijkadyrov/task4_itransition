@@ -1,8 +1,8 @@
-import { Alert } from "antd";
+import {Alert} from "antd";
 
-export const ErrorMessage = ({ message }) => {
-  if (!message) {
-    return null;
-  }
-  return <Alert message={message} type={"error"} />;
+export const ErrorMessage = ({message}) => {
+    if (!message) {
+        return null;
+    }
+    return <Alert message={message} type={"error"}/>;
 };
