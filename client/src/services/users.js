@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "task4-itransition-mauve.vercel.app",
+  baseURL: "task4-itransition-65ds.vercel.app",
 });
 export const getUsers = async (token) => {
   const config = {
